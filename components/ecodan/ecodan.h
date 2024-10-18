@@ -9,7 +9,6 @@
 #include "esphome/components/text_sensor/text_sensor.h"
 #include "esphome/components/uart/uart.h"
 #include "esphome/core/log.h"
-#include "esp_log.h"
 #include "esphome/core/defines.h"
 #include "commands.h"
 #include "fields.h"
