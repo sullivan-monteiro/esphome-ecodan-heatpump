@@ -143,8 +143,8 @@ void EcodanHeatpump::initialize() {
 }
 
 void EcodanHeatpump::receiveSerialPacket() {
-  ESP_LOGD(TAG, "receiveSerialPackets");
   uint8_t receiveBuffer[PACKET_BUFFER_SIZE];
+  ESP_LOGD(TAG, "receiveSerialPackets");
 
   if (readPacket(receiveBuffer) == RCVD_PKT_CONNECT_SUCCESS) {
     parsePacket(receiveBuffer);
