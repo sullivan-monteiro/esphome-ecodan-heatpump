@@ -156,7 +156,6 @@ int EcodanHeatpump::readPacket(uint8_t *data) {
   int dataSum = 0;
   uint8_t checksum = 0;
   uint8_t dataLength = 0;
-  ESP_LOGE("READING");
   if (available() > 0) { // read until we get start byte 0xfc
     while (available() > 0 && !foundStart) {
       data[0] = read();
