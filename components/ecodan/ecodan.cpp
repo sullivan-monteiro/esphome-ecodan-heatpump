@@ -1,5 +1,4 @@
 #include "ecodan.h"
-#include "esp_log.h"
 
 constexpr uint8_t ecodan::commands::command_power_state::packetMask[PACKET_BUFFER_SIZE];
 constexpr uint8_t ecodan::commands::command_force_dhw::packetMask[PACKET_BUFFER_SIZE];
@@ -146,7 +145,7 @@ void EcodanHeatpump::initialize() {
 void EcodanHeatpump::receiveSerialPacket() {
   uint8_t receiveBuffer[PACKET_BUFFER_SIZE];
   ESP_LOGD(TAG, "receiveSerialPackets");
-  ESP_LOG_BUFFER_HEX(TAG, receiveBuffer[PACKET_BUFFER_SIZE], PACKET_BUFFER_SIZE);
+  ESP_LOGD(TAG, receiveBuffer[PACKET_BUFFER_SIZE]);
   int read = readPacket(receiveBuffer);
   if (read == RCVD_PKT_CONNECT_SUCCESS) {
     parsePacket(receiveBuffer);
