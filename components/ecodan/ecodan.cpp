@@ -147,7 +147,6 @@ void EcodanHeatpump::receiveSerialPacket() {
   ESP_LOGD(TAG, "receiveSerialPackets");
 
   int read = readPacket(receiveBuffer);
-  ESP_LOGCONFIG(TAG, "Read is %s", read);
   if (read == RCVD_PKT_CONNECT_SUCCESS) {
     parsePacket(receiveBuffer);
   }
@@ -161,14 +160,13 @@ int EcodanHeatpump::readPacket(uint8_t *data) {
   if (available() > 0) { // read until we get start byte 0xfc
     while (available() > 0 && !foundStart) {
       data[0] = read();
+      ESP_LOGCONFIG(TAG, "Read is %s", data[0]);
       if (data[0] == CONNECT[0]) {
-        ESP_LOGD(TAG, "start byte 0xfc");
         foundStart = true;
         delay(READOUT_DELAY); // found that this delay increases accuracy when reading, might not be needed though
       }
     }
     if (!foundStart) {
-      ESP_LOGD(TAG, "RCVD_PKT_FAIL");
       return RCVD_PKT_FAIL;
     }
     for (int i = 1; i < 5; i++) { // read header
