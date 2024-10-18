@@ -160,7 +160,7 @@ int EcodanHeatpump::readPacket(uint8_t *data) {
   if (available() > 0) { // read until we get start byte 0xfc
     while (available() > 0 && !foundStart) {
       data[0] = read();
-      ESP_LOGCONFIG(TAG, "Read is %s", data[0]);
+      ESP_LOGD(TAG, "Read is %s", data[0]);
       if (data[0] == CONNECT[0]) {
         foundStart = true;
         delay(READOUT_DELAY); // found that this delay increases accuracy when reading, might not be needed though
