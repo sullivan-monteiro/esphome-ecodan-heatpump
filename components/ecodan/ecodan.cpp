@@ -162,11 +162,13 @@ int EcodanHeatpump::readPacket(uint8_t *data) {
     while (available() > 0 && !foundStart) {
       data[0] = read();
       if (data[0] == CONNECT[0]) {
+        ESP_LOGD(TAG, "start byte 0xfc");
         foundStart = true;
         delay(READOUT_DELAY); // found that this delay increases accuracy when reading, might not be needed though
       }
     }
     if (!foundStart) {
+      ESP_LOGD(TAG, "RCVD_PKT_FAIL");
       return RCVD_PKT_FAIL;
     }
     for (int i = 1; i < 5; i++) { // read header
