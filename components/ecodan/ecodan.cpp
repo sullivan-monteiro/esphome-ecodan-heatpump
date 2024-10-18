@@ -12,7 +12,7 @@ constexpr uint8_t ecodan::commands::command_zone1_room_temp::packetMask[PACKET_B
 namespace esphome {
 namespace ecodan_ {
 
-static const char *TAG = "ecodan";
+static const char *TAG = "easydan";
 
 void EcodanSwitch::dump_config() {
   LOG_SWITCH("", "Ecodan Switch", this);
@@ -143,9 +143,12 @@ void EcodanHeatpump::initialize() {
 }
 
 void EcodanHeatpump::receiveSerialPacket() {
+  ESP_LOGD(TAG, "receiveSerialPackets");
   uint8_t receiveBuffer[PACKET_BUFFER_SIZE];
 
-  if (readPacket(receiveBuffer) == RCVD_PKT_CONNECT_SUCCESS) {
+  int read = readPacket(receiveBuffer)
+  ESP_LOGCONFIG(TAG, "Read is %s", read);
+  if (read == RCVD_PKT_CONNECT_SUCCESS) {
     parsePacket(receiveBuffer);
   }
 }
