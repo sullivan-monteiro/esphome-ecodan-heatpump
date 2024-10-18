@@ -1,4 +1,5 @@
 #include "ecodan.h"
+#include "esp_log.h"
 
 constexpr uint8_t ecodan::commands::command_power_state::packetMask[PACKET_BUFFER_SIZE];
 constexpr uint8_t ecodan::commands::command_force_dhw::packetMask[PACKET_BUFFER_SIZE];
