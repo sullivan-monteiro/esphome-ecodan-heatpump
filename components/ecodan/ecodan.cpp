@@ -145,7 +145,7 @@ void EcodanHeatpump::initialize() {
 void EcodanHeatpump::receiveSerialPacket() {
   uint8_t receiveBuffer[PACKET_BUFFER_SIZE];
   ESP_LOGD(TAG, "receiveSerialPackets");
-  for (int i = 0; i < 8; i++)
+  for (int i = 0; i < PACKET_BUFFER_SIZE; i++)
   {
     ESP_LOGD(TAG, "0x%02hhx",receiveBuffer[i]);
   }
